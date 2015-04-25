@@ -1,5 +1,6 @@
 package edu.itesa.adamaris.android;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+
+import edu.itesa.adamaris.android.DB.Data;
+import edu.itesa.adamaris.android.DB.DataBaseManager;
+import edu.itesa.adamaris.android.DB.DbHelper;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,6 +28,17 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        DbHelper helper = new DbHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        DataBaseManager manager = new DataBaseManager(this);
+        Data data = new Data();
+        data.setEvent_name("test");
+        data.setEvent_description("test");
+
+
+        manager.Insert(data);
+
     }
 
 

@@ -6,20 +6,26 @@ import java.util.Date;
  * Created by 4to on 4/21/2015.
  */
 public class Data {
-    public  final String table_name = "eventos";
-    public  int id;
-    public  final String event_name = "_event_name";
-    public  final String event_description = "event_description";
-    public Date starting_date, ending_date;
+    private   String table_name = "eventos";
+    private  int id;
+    private  String event_name = "event_name";
+    private  String event_description = "event_description";
+    private  Date starting_date, ending_date;
 
-    public  final String location = "location";
-    public  boolean event_status;
-    public  String event_title = "event_title";
+    private String location = "location";
+    private  boolean event_status;
+    private  String event_title = "event_title";
 
-    public  String create_table = "create table " + table_name + " (" +
-            id + " integer primary key autoincrement," + event_name + " text not null,"
-            + event_description + " text not null," + starting_date + " text not null," + location + " text,"
-            + event_status + " text," + event_title + " text not null;";
+
+
+    public String getCreateTableQuery()
+    {
+        String create_table = "create table " + table_name + " (" +
+                id + " integer primary key autoincrement," + event_name + " text not null,"
+                + event_description + " text not null," + starting_date + " text not null," + location + " text,"
+                + event_status + " text," + event_title + " text not null;";
+        return create_table;
+    }
 
     public  int getId() {
 
@@ -34,6 +40,13 @@ public class Data {
         return event_description;
     }
 
+    public void setEvent_description(String event_description) {
+        this.event_description = event_description;
+    }
+
+    public void setEvent_name(String event_name) {
+        this.event_name = event_name;
+    }
 
     public  Date getStarting_date() {
         return starting_date;
