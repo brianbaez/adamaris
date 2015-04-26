@@ -1,4 +1,4 @@
-package edu.itesa.adamaris.android.DB;
+package edu.itesa.adamaris.android;
 
 import java.util.Date;
 
@@ -6,26 +6,22 @@ import java.util.Date;
  * Created by 4to on 4/21/2015.
  */
 public class Data {
-    private   String table_name = "eventos";
-    private  int id;
-    private  String event_name = "event_name";
-    private  String event_description = "event_description";
-    private  Date starting_date, ending_date;
+    public static  String table_name = "eventos";
+    public static int id;
+    public static String event_name = "event_name";
+    public static String event_description = "event_description";
+    public static Date starting_date, ending_date;
 
-    private String location = "location";
-    private  boolean event_status;
-    private  String event_title = "event_title";
+    public static String location = "location";
+    public static boolean event_status;
+    public static String event_title = "event_title";
 
-
-
-    public String getCreateTableQuery()
-    {
-        String create_table = "create table " + table_name + " (" +
+    public static final String create_table = "create table " + table_name + " (" +
                 id + " integer primary key autoincrement," + event_name + " text not null,"
                 + event_description + " text not null," + starting_date + " text not null," + location + " text,"
                 + event_status + " text," + event_title + " text not null;";
-        return create_table;
-    }
+
+
 
     public  int getId() {
 

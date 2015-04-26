@@ -1,4 +1,4 @@
-package edu.itesa.adamaris.android.DB;
+package edu.itesa.adamaris.android;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,10 +14,16 @@ public class DbHelper extends SQLiteOpenHelper{
     }
 
 
+
+
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)
+    {
+
+
         Data data = new Data();
-        db.execSQL();
+        db.execSQL(Data.create_table);
+
 
     }
 

@@ -1,11 +1,8 @@
-package edu.itesa.adamaris.android.DB;
+package edu.itesa.adamaris.android;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
-
-import com.google.api.client.util.DateTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,7 +24,6 @@ public class DataBaseManager {
 
     private ContentValues generateContentValues(Data data){
         ContentValues values = new ContentValues();
-
 
         return values;
 
@@ -53,7 +49,6 @@ public class DataBaseManager {
         values.put("location", data.getLocation());
         values.put("event_status", data.isEvent_status());
         values.put("event_title", data.getEvent_title());
-
 
 
 
