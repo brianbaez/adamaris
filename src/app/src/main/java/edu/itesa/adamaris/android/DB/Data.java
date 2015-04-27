@@ -1,4 +1,4 @@
-package edu.itesa.adamaris.android;
+package edu.itesa.adamaris.android.DB;
 
 import java.util.Date;
 
@@ -7,23 +7,24 @@ import java.util.Date;
  */
 public class Data {
     public static  String table_name = "eventos";
-    public static int id;
+    public static  String  id = "id";
     public static String event_name = "event_name";
     public static String event_description = "event_description";
     public static Date starting_date, ending_date;
 
     public static String location = "location";
-    public static boolean event_status;
+    public static String event_status = "event_status";
     public static String event_title = "event_title";
 
     public static final String create_table = "create table " + table_name + " (" +
                 id + " integer primary key autoincrement," + event_name + " text not null,"
-                + event_description + " text not null," + starting_date + " text not null," + location + " text,"
+                + event_description + " text not null," + starting_date + " text not null," + ending_date +
+                " text not null," + location + " text,"
                 + event_status + " text," + event_title + " text not null;";
 
 
 
-    public  int getId() {
+    public  String getId() {
 
         return id;
     }
@@ -64,12 +65,12 @@ public class Data {
         return location;
     }
 
-    public  boolean isEvent_status() {
+    public static String getEvent_status() {
         return event_status;
     }
 
-    public  void setEvent_status(boolean event_status) {
-        this.event_status = event_status;
+    public static void setEvent_status(String event_status) {
+        Data.event_status = event_status;
     }
 
     public  String getEvent_title() {
