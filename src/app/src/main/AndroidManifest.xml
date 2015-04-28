@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.itesa.adamaris.android" >
+    package="edu.itesa.adamaris.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -10,6 +10,7 @@
         android:name="com.google.android.gms.version"
         android:value="@integer/google_play_services_version" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,26 +19,21 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+
         </activity>
-        <activity
+
+        <activity android:hardwareAccelerated="true"
             android:name=".activities.SignInActivity"
-            android:hardwareAccelerated="true"
-            android:label="@string/title_activity_signin"
-            android:noHistory="true" >
-        </activity>
+            android:label="@string/title_activity_signin"></activity>
+
         <activity
             android:name=".activities.SplashActivity"
-            android:noHistory="true"
             android:theme="@style/AppTheme.Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.Prueba"
-            android:label="@string/title_activity_prueba" >
         </activity>
     </application>
 

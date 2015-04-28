@@ -1,68 +1,51 @@
 package edu.itesa.adamaris.android.GooglePlusSignIn;
 
-import java.io.InputStream;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.plus.Plus;
-import com.google.android.gms.plus.model.people.Person;
 
 /**
  * Created by Kelfi on 4/9/2015.
  */
-public class GooglePlusAuthentication implements ConnectionCallbacks,
-        OnConnectionFailedListener {
+public class GooglePlusAuthentication {
 
     private static final int RC_SIGN_IN = 0;
     // Logcat tag
-    private static final String TAG = "MainActivity";
+    //private static final String TAG = "MainActivity";
     private GoogleApiClient mGoogleApiClient;
+    private boolean signedInUser;
     private boolean mIntentInProgress;
-    private boolean mSignInClicked;
     private ConnectionResult mConnectionResult;
 
-    public GooglePlusAuthentication (Context context, ConnectionCallbacks connectionCallbacks,
-                                    OnConnectionFailedListener onConnectionFailedListener)
-    {
+    public GooglePlusAuthentication(Context context, ConnectionCallbacks connectionCallbacks,
+                                    OnConnectionFailedListener onConnectionFailedListener) {
         mGoogleApiClient = new GoogleApiClient.Builder(context)
+                .addApi(Plus.API, Plus.PlusOptions.builder().build())
+                .addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addConnectionCallbacks(connectionCallbacks)
-                .addOnConnectionFailedListener(onConnectionFailedListener).addApi(Plus.API)
-                .addScope(Plus.SCOPE_PLUS_LOGIN).build();
+                .addOnConnectionFailedListener(onConnectionFailedListener)
+                .build();
     }
 
-    public void logIn (Activity activity)
-    {
-        if (!mGoogleApiClient.isConnecting()) {
-            mSignInClicked = true;
+    public void logIn(Activity activity) {
+        if(!mGoogleApiClient.isConnecting())
+        {
+            signedInUser = true;
             resolveSignInError(activity);
         }
+
     }
-    public void logOff ()
-    {
+
+    public void logOff() {
         if (mGoogleApiClient.isConnected()) {
             Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
             mGoogleApiClient.disconnect();
@@ -70,20 +53,18 @@ public class GooglePlusAuthentication implements ConnectionCallbacks,
         }
     }
 
-    public void connect ()
-    {
-        if(!mGoogleApiClient.isConnected())
-        {
-            mGoogleApiClient.connect();
-        }
+    public boolean isConnected() {
+        return mGoogleApiClient.isConnected();
     }
 
-    public void disconnect()
-    {
-        if(mGoogleApiClient.isConnected())
-        {
-            mGoogleApiClient.disconnect();
-        }
+    public void connect() {
+
+        mGoogleApiClient.connect();
+    }
+
+    public void disconnect() {
+
+        mGoogleApiClient.disconnect();
     }
 
     private void resolveSignInError(Activity activity) {
@@ -99,16 +80,13 @@ public class GooglePlusAuthentication implements ConnectionCallbacks,
     }
 
     public void onConnected(Bundle bundle) {
-        mSignInClicked = false;
+        signedInUser = false;
     }
 
     public void onConnectionSuspended(int i) {
         mGoogleApiClient.connect();
     }
 
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
 
     public void onConnectionFailed(ConnectionResult connectionResult, Activity activity) {
         if (!connectionResult.hasResolution()) {
@@ -118,18 +96,37 @@ public class GooglePlusAuthentication implements ConnectionCallbacks,
                     .show();
             return;
         }
-
         if (!mIntentInProgress) {
-            // Store the ConnectionResult for later usage
+            // store mConnectionResult
             mConnectionResult = connectionResult;
-
-            if (mSignInClicked) {
-                // The user has already clicked 'sign-in' so we attempt to
-                // resolve all
-                // errors until the user is signed in, or they cancel.
+            if (signedInUser) {
                 resolveSignInError(activity);
             }
+
         }
     }
+    public void onActivityResult(int requestCode, int responseCode, Intent intent, int RESULT_OK) {
 
+        switch (requestCode) {
+
+            case RC_SIGN_IN:
+
+                if (responseCode == RESULT_OK) {
+
+                    signedInUser = false;
+                }
+
+                mIntentInProgress = false;
+
+                if (!mGoogleApiClient.isConnecting()) {
+
+                    mGoogleApiClient.connect();
+
+                }
+
+                break;
+
+        }
+
+    }
 }
