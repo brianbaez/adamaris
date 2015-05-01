@@ -25,7 +25,7 @@
         <activity android:hardwareAccelerated="true"
             android:name=".activities.SignInActivity"
             android:label="@string/title_activity_signin"
-            android:noHistory="true">
+                                                                                                                      >
             </activity>
 
         <activity
@@ -33,9 +33,8 @@
             android:noHistory="true"
             android:theme="@style/AppTheme.Splash" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
         </activity>
     </application>

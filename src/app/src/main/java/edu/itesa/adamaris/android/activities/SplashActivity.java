@@ -2,12 +2,16 @@ package edu.itesa.adamaris.android.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import edu.itesa.adamaris.android.DB.Data;
+import edu.itesa.adamaris.android.DB.DataBaseManager;
+import edu.itesa.adamaris.android.DB.DbHelper;
 import edu.itesa.adamaris.android.GooglePlusSignIn.GooglePlusAuthentication;
 import edu.itesa.adamaris.android.MainActivity;
 import edu.itesa.adamaris.android.R;
@@ -28,6 +32,9 @@ public class SplashActivity extends Activity implements GoogleApiClient.Connecti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
 
         try {
             Thread.sleep(1000);
