@@ -1,10 +1,13 @@
 package edu.itesa.adamaris.android;
 
 
+
 import android.database.sqlite.SQLiteDatabase;
 
 import android.content.Intent;
 
+
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -28,6 +31,10 @@ import edu.itesa.adamaris.android.GoogleCalendarApi.GoogleCalendarEvent;
 import edu.itesa.adamaris.android.activities.Prueba;
 
 
+import edu.itesa.adamaris.android.DB.Data;
+import edu.itesa.adamaris.android.DB.DataBaseManager;
+import edu.itesa.adamaris.android.DB.DbHelper;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -36,26 +43,13 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         DbHelper helper = new DbHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
         DataBaseManager manager = new DataBaseManager(this);
         Data data = new Data();
-
-        data.setEvent_name("test");
-        data.setEvent_description("TEST");
-
-
-//        manager.Insert(data);
-
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-
-
+        manager.Insert(data);
 
     }
 

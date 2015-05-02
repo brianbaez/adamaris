@@ -3,6 +3,7 @@ package edu.itesa.adamaris.android.DB;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ public class DataBaseManager {
     private DbHelper helper;
     private SQLiteDatabase db;
 
+
     public DataBaseManager(Context context ) {
         helper = new DbHelper(context);
         db = helper.getWritableDatabase();
@@ -24,28 +26,36 @@ public class DataBaseManager {
 
     private ContentValues generateContentValues(Data data ){
         ContentValues values = new ContentValues();
+        values.put("event_name", data.getEvent_name());
+        values.put("event_description", data.getEvent_description());
+        values.put("starting_date", data.getStarting_date().toString());
+        values.put("ending_date", data.getEnding_date().toString());
+        values.put("event_name", data.getEvent_description());
+        values.put("event_description", data.getEvent_description());
+        values.put("starting_date", data.getStarting_date());
+        values.put("ending_date", data.getEnding_date());
+        values.put("location", data.getLocation());
+        values.put("event_status", data.getEvent_status());
+        values.put("event_title", data.getEvent_title());
 
         return values;
 
     }
 
-    public void Insert(Data data){
-        ContentValues values = new ContentValues();
+    public void Insert(Data data)
+    {
 
+        db.insert(Data.table_name, null, generateContentValues(data));
 
-        values.put("event_name", data.getEvent_description());
-        values.put("event_description", data.getEvent_description());
-        values.put("starting_date", data.getStarting_date().toString());
-        values.put("ending_date", data.getEnding_date().toString());
-        values.put("location", data.getLocation());
-        values.put("event_status", data.getEvent_status());
-        values.put("event_title", data.getEvent_title());
+    }
 
-
-
+    public void Remove(Data data)
+    {
 
 
     }
+
+
 
 }
 
