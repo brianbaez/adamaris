@@ -49,8 +49,10 @@ public class MainActivity extends ActionBarActivity {
 
         DataBaseManager manager = new DataBaseManager(this);
         Data data = new Data();
-        manager.Insert(data);
 
+
+        manager.Insert(data);
+        manager.Remove(data);
     }
 
 

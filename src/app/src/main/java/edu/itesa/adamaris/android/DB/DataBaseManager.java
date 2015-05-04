@@ -50,9 +50,11 @@ public class DataBaseManager {
     }
 
     public void Remove(Data data)
-    {
+      {
+////        Delete * FROM eventos where nombre = Data.GetNombre
+             String DeleteQuery = "DELETE * FROM " + data.table_name + " WHERE " + data.event_name + " = " + Data.getEvent_name();
 
-
+          db.execSQL(DeleteQuery);
     }
 
 
