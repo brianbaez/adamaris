@@ -36,10 +36,7 @@
             android:name=".activities.SplashActivity"
             android:noHistory="true"
             android:theme="@style/AppTheme.Splash" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
-            </intent-filter>
+
         </activity>
     </application>
 

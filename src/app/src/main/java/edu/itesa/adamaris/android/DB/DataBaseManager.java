@@ -45,17 +45,17 @@ public class DataBaseManager {
     public void Insert(Data data)
     {
 
-        db.insert(Data.table_name, null, generateContentValues(data));
+        db.insert(data.table_name, null, generateContentValues(data));
 
     }
 
-    public void Remove(Data data)
-      {
+//    public void Remove(Data data)
+//      {
 ////        Delete * FROM eventos where nombre = Data.GetNombre
-             String DeleteQuery = "DELETE * FROM " + data.table_name + " WHERE " + data.event_name + " = " + Data.getEvent_name();
+//             String DeleteQuery = "DELETE * FROM " + data.table_name + " WHERE " + data.event_name + " = " + data.getEvent_name();
 
-          db.execSQL(DeleteQuery);
-    }
+//          db.execSQL(DeleteQuery);
+//    }
 
 
 

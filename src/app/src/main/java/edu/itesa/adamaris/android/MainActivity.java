@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import edu.itesa.adamaris.android.DB.DbHelper;
 import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.itesa.adamaris.android.GoogleCalendarApi.GoogleCalendarCredential;
 import edu.itesa.adamaris.android.GoogleCalendarApi.GoogleCalendarEvent;
@@ -34,6 +36,7 @@ import edu.itesa.adamaris.android.activities.Prueba;
 import edu.itesa.adamaris.android.DB.Data;
 import edu.itesa.adamaris.android.DB.DataBaseManager;
 import edu.itesa.adamaris.android.DB.DbHelper;
+
 
 
 public class MainActivity extends ActionBarActivity {
@@ -47,13 +50,29 @@ public class MainActivity extends ActionBarActivity {
         DbHelper helper = new DbHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        DataBaseManager manager = new DataBaseManager(this);
-        Data data = new Data();
 
 
-        manager.Insert(data);
-        manager.Remove(data);
+            DataBaseManager manager = new DataBaseManager(this);
+            Data data = new Data();
+
+            data.setEvent_name("Test");
+            data.setEvent_description("test");
+
+            manager.Insert(data);
+
+            TextView text = (TextView) findViewById(R.id.textView);
+            String select = "SELECT " + data.event_description + " FROM " + data.table_name + ";";
+            db.execSQL(select);
+            String datos = select;
+            text.setText(datos);
+
+
+
+
+
     }
+
+
 
 
     @Override
