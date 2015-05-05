@@ -55,13 +55,12 @@ public class MainActivity extends ActionBarActivity {
             DataBaseManager manager = new DataBaseManager(this);
             Data data = new Data();
 
-            data.setEvent_name("Test");
-            data.setEvent_description("test");
 
-            manager.Insert(data);
-
-            TextView text = (TextView) findViewById(R.id.textView);
-            String select = "SELECT " + data.event_description + " FROM " + data.table_name + ";";
+            manager.Insert("TEST", "TEST", "TEST", "TEST", "TEST", "TEST", "TEST");
+            Toast toast = Toast.makeText(getApplicationContext(), "inserted", Toast.LENGTH_LONG);
+             TextView text = (TextView) findViewById(R.id.textView);
+             text.setText(data.getEvent_name());
+            String select = "SELECT " + data.event_name + " FROM " + data.table_name + ";";
             db.execSQL(select);
             String datos = select;
             text.setText(datos);

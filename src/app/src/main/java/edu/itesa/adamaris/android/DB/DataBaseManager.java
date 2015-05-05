@@ -24,16 +24,13 @@ public class DataBaseManager {
 
     }
 
-    private ContentValues generateContentValues(Data data ){
+    private ContentValues generateContentValues(String event_name, String event_description, String starting_date, String ending_date, String location, String event_status, String event_title){
+        Data data = new Data();
         ContentValues values = new ContentValues();
         values.put("event_name", data.getEvent_name());
         values.put("event_description", data.getEvent_description());
         values.put("starting_date", data.getStarting_date().toString());
         values.put("ending_date", data.getEnding_date().toString());
-        values.put("event_name", data.getEvent_description());
-        values.put("event_description", data.getEvent_description());
-        values.put("starting_date", data.getStarting_date());
-        values.put("ending_date", data.getEnding_date());
         values.put("location", data.getLocation());
         values.put("event_status", data.getEvent_status());
         values.put("event_title", data.getEvent_title());
@@ -42,10 +39,10 @@ public class DataBaseManager {
 
     }
 
-    public void Insert(Data data)
+    public void Insert(String event_name, String event_description, String starting_date, String ending_date, String location, String event_status, String event_title)
     {
-
-        db.insert(data.table_name, null, generateContentValues(data));
+        Data data = new Data();
+        db.insert(data.table_name, null, generateContentValues(event_name, event_description, starting_date, ending_date, location, event_status, event_title));
 
     }
 
