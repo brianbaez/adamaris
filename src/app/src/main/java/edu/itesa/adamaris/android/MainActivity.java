@@ -60,7 +60,7 @@ public class MainActivity extends ActionBarActivity {
             manager.Insert(data);
 
 
-            String select = "SELECT * FROM eventos;";
+            String select = "SELECT * FROM Agenda.eventos;";
             Toast toast = Toast.makeText(getApplicationContext(), "inserted", Toast.LENGTH_LONG);
              TextView text = (TextView) findViewById(R.id.textView);
 
