@@ -24,16 +24,13 @@ public class DataBaseManager {
 
     }
 
-    private ContentValues generateContentValues(Data data ){
+    private ContentValues generateContentValues(Data data){
+
         ContentValues values = new ContentValues();
         values.put("event_name", data.getEvent_name());
         values.put("event_description", data.getEvent_description());
         values.put("starting_date", data.getStarting_date().toString());
         values.put("ending_date", data.getEnding_date().toString());
-        values.put("event_name", data.getEvent_description());
-        values.put("event_description", data.getEvent_description());
-        values.put("starting_date", data.getStarting_date());
-        values.put("ending_date", data.getEnding_date());
         values.put("location", data.getLocation());
         values.put("event_status", data.getEvent_status());
         values.put("event_title", data.getEvent_title());
