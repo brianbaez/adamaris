@@ -26,7 +26,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
             Data data = new Data();
             db.execSQL(data.create_table);
-            Log.d("DbHelper", "table created");
+
 
     }
 

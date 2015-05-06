@@ -43,13 +43,13 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        try {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
 
-        DbHelper helper = new DbHelper(this);
-        SQLiteDatabase db = helper.getWritableDatabase();
-
+            DbHelper helper = new DbHelper(this);
+            SQLiteDatabase db = helper.getWritableDatabase();
 
 
             DataBaseManager manager = new DataBaseManager(this);
@@ -60,16 +60,19 @@ public class MainActivity extends ActionBarActivity {
 
             manager.Insert(data);
 
-            TextView text = (TextView) findViewById(R.id.textView);
-            String select = "SELECT " + data.event_description + " FROM " + data.table_name + ";";
+//            TextView text = (TextView) findViewById(R.id.textView);
+            String select = "SELECT * FROM eventos;";
             db.execSQL(select);
             String datos = select;
-            text.setText(datos);
+//            text.setText(datos);
 
 
-
-
-
+        }
+        catch(Exception e)
+        {
+            TextView text = (TextView) findViewById(R.id.textView);
+            text.setText(e.toString());
+        }
     }
 
 
